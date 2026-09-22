@@ -1,0 +1,254 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>king doom</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+
+body{
+    background:#000;
+    color:#fff;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* VM */
+.virtual-machine{
+    width:98vw;
+    height:96vh;
+    background:#000;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 0 50px rgba(255,0,0,0.5);
+    border:2px solid rgba(255,50,50,0.5);
+    position:relative;
+}
+
+.vm-header{
+    background:rgba(40,10,10,0.95);
+    height:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+    border-bottom:1px solid rgba(255,100,100,0.5);
+}
+
+.vm-title{
+    font-size:14px;
+    font-weight:500;
+    color:#ff4444;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.vm-status{
+    font-size:12px;
+    color:#ff9999;
+}
+/* Desktop */
+.virtual-screen{
+    height:calc(100% - 30px);
+    width:100%;
+    background-image: url('https://e.top4top.io/p_3850dw3521.gif');
+
+}
+
+.desktop{
+    height:100%;
+    display:flex;
+    padding:20px;
+}
+
+.desktop-icons{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    width:120px;
+}
+
+.icon{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:80px;
+    padding:10px;
+    cursor:pointer;
+    border-radius:8px;
+    background:rgba(255,50,50,0.1);
+    border:2px solid rgba(255,100,100,0.3);
+}
+
+.icon-image{
+    width:48px;
+    height:48px;
+    margin-bottom:8px;
+    border-radius:8px;
+    object-fit:cover;
+}
+
+.icon-text{
+    font-size:12px;
+    color:#ff6666;
+    font-weight:600;
+}
+
+/* Window */
+.window{
+    background:rgba(40,20,20,0.95);
+    border-radius:10px;
+    position:absolute;
+    min-width:400px;
+    min-height:300px;
+    border:1px solid rgba(255,100,100,0.5);
+    display:none;
+    top:60px;
+    left:150px;
+}
+
+.window-header{
+    background:linear-gradient(135deg,rgba(255,50,50,0.8),rgba(200,20,20,0.9));
+    padding:12px 15px;
+    color:#fff;
+    font-weight:600;
+}
+
+.window-content{
+    padding:20px;
+}
+
+.file-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:30px;
+    background:rgba(255,50,50,0.2);
+    border-radius:20px;
+    cursor:pointer;
+    border:3px solid rgba(255,100,100,0.5);
+    width:250px;
+}
+
+.file-icon-image{
+    width:120px;
+    height:120px;
+    border-radius:15px;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.file-name{
+    font-size:18px;
+    font-weight:600;
+    color:#ff6666;
+}
+
+/* Auto Mouse */
+.auto-mouse{
+    position:fixed;
+    width:48px;
+    height:48px;
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:all 0.02s linear;
+}
+
+/* Full screen iframe */
+.hacked-page-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    z-index:100000;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<img src="https://i.postimg.cc/gJBYZrC9/5b74a728-54c0-47ee-b871-01abec5a0e0c.png" class="auto-mouse" id="auto-mouse" style="display: block; transition: 1200ms linear; left: 75.625px; top: 128.344px;">
+
+<div class="hacked-page-container" id="hacked-page-container">
+    <iframe id="hacked-iframe" style="width:100%;height:100%;border:none;">
+    </iframe>
+</div>
+
+<div class="virtual-machine">
+    <div class="vm-header">
+        <div class="vm-title"><i class="fab fa-linux"></i>king doom</div>
+    </div>
+
+    <div class="virtual-screen">
+        <div class="desktop">
+
+            <div class="desktop-icons">
+                <div class="icon" id="kingdoom-icon">
+                    <img src="https://h.top4top.io/p_38509j7ib1.gif" class="icon-image">
+                    <span class="icon-text">king doom</span>
+                </div>
+            </div>
+
+            <div class="window" id="kingdoom-window">
+                <div class="window-header">جاهز يا قواد هههه كس امك </div>
+                <div class="window-content">
+                    <div class="file-item" id="kingdoom-file">
+                        <img src="https://h.top4top.io/p_38509j7ib1.gif" class="file-icon-image">
+                        <span class="file-name">king doom</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+const autoMouse = document.getElementById("auto-mouse");
+const kingdoomIcon = document.getElementById("kingdoom-icon");
+const kingdoomFile = document.getElementById("kingdoom-file");
+const kingdoomWindow = document.getElementById("kingdoom-window");
+const hackedContainer = document.getElementById("hacked-page-container");
+const hackedIframe = document.getElementById("hacked-iframe");
+
+function moveCursor(x,y,duration){
+    return new Promise(resolve=>{
+        autoMouse.style.transition = `all ${duration}ms linear`;
+        autoMouse.style.left = x+"px";
+        autoMouse.style.top = y+"px";
+        setTimeout(resolve,duration);
+    });
+}
+
+async function startMouseAnimation(){
+    autoMouse.style.display="block";
+
+    const kingdoomRect = kingdoomIcon.getBoundingClientRect();
+    await moveCursor(kingdoomRect.left+kingdoomRect.width/2,
+                     kingdoomRect.top+kingdoomRect.height/2,1200);
+
+    kingdoomWindow.style.display="block";
+
+    const fileRect = kingdoomFile.getBoundingClientRect();
+    await moveCursor(fileRect.left+fileRect.width/2,
+                     fileRect.top+fileRect.height/2,1000);
+
+    // يفتح الرابط بعد الضغط
+    hackedContainer.style.display="block";
+    hackedIframe.src="https://mohammedharb411-stack.github.io/mohammed1-Here/";
+}
+
+window.onload = startMouseAnimation;
+</script>
+
+
+</body></html>
